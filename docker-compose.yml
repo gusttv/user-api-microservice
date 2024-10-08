@@ -1,9 +1,9 @@
 services:
   postgres:
     image: bitnami/postgresql:latest
-    container_name: spring_security-learning
+    container_name: user-api-microservice
     environment:
-      POSTGRES_DB: spring_security_learning
+      POSTGRES_DB: user-api-microservice
       POSTGRES_USER: ggg
       POSTGRES_PASSWORD: pass
     volumes:

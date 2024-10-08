@@ -1,5 +1,6 @@
 package com.authapimicroservice.controllers;
 
+import com.authapimicroservice.domain.auth.AuthService;
 import com.authapimicroservice.domain.user.User;
 import com.authapimicroservice.dto.LoginRequestDTO;
 import com.authapimicroservice.dto.RegisterRequestDTO;
@@ -7,6 +8,7 @@ import com.authapimicroservice.dto.ResponseDTO;
 import com.authapimicroservice.infrastructure.config.TokenService;
 import com.authapimicroservice.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,38 +20,32 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthController {
-    private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
-    private final TokenService tokenService;
+
+    @Autowired
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body) {
-        User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
-        if(passwordEncoder.matches(body.password(), user.getPassword())) {
-            String token = this.tokenService.generateToken(user);
-            return ResponseEntity.ok(new ResponseDTO(user.getName(), token));
-        }
-        return ResponseEntity.badRequest().build();
+    try {
+        ResponseDTO response = authService.login(body);
+        return ResponseEntity.ok(response);
+    } catch (RuntimeException e) {
+        return ResponseEntity.badRequest().body(new ResponseDTO(e.getMessage(), null));
+    }
     }
 
     @PostMapping("/register")
     public ResponseEntity<ResponseDTO> register(@RequestBody RegisterRequestDTO body) {
-        Optional<User> user = this.repository.findByEmail(body.email());
-        if(user.isEmpty()) {
-            User newUser = new User();
-            newUser.setPassword(passwordEncoder.encode(body.password()));
-            newUser.setEmail(body.email());
-            newUser.setName(body.name());
-
-            this.repository.save(newUser);
-
-            String token = this.tokenService.generateToken(newUser);
-            return ResponseEntity.ok(new ResponseDTO(newUser.getName(), token));
+        try {
+            ResponseDTO response = authService.register(body);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new ResponseDTO(e.getMessage(), null));
         }
-        return ResponseEntity.badRequest().build();
     }
-
-
 }

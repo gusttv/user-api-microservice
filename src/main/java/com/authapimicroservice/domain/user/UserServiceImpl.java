@@ -22,11 +22,6 @@ public class UserServiceImpl implements UserService{
                 new RuntimeException("User not found"));
     }
 
-    // create user
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
     // update user
     public Optional<User> updateUser(String id, User userDetails) {
         return userRepository.findById(id).map(user -> {
