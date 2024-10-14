@@ -1,11 +1,11 @@
-package com.authapimicroservice.domain.auth;
+package com.usermicroservice.domain.auth;
 
-import com.authapimicroservice.domain.user.User;
-import com.authapimicroservice.dto.LoginRequestDTO;
-import com.authapimicroservice.dto.RegisterRequestDTO;
-import com.authapimicroservice.dto.ResponseDTO;
-import com.authapimicroservice.infrastructure.config.TokenService;
-import com.authapimicroservice.repositories.UserRepository;
+import com.usermicroservice.domain.user.User;
+import com.usermicroservice.dto.LoginRequestDTO;
+import com.usermicroservice.dto.RegisterRequestDTO;
+import com.usermicroservice.dto.ResponseDTO;
+import com.usermicroservice.infrastructure.config.TokenService;
+import com.usermicroservice.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

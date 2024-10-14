@@ -1,7 +1,7 @@
-package com.authapimicroservice.infrastructure.config;
+package com.usermicroservice.infrastructure.config;
 
-import com.authapimicroservice.domain.user.User;
-import com.authapimicroservice.repositories.UserRepository;
+import com.usermicroservice.domain.user.User;
+import com.usermicroservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

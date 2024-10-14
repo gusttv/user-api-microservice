@@ -1,9 +1,8 @@
-package com.authapimicroservice.controllers;
+package com.usermicroservice.controllers;
 
-import com.authapimicroservice.domain.user.User;
-import com.authapimicroservice.domain.user.UserService;
+import com.usermicroservice.domain.user.User;
+import com.usermicroservice.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.authapimicroservice.domain.user;
+package com.usermicroservice.domain.user;
 
 import java.util.Optional;
 

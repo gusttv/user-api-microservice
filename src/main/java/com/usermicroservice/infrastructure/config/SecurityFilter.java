@@ -1,7 +1,7 @@
-package com.authapimicroservice.infrastructure.config;
+package com.usermicroservice.infrastructure.config;
 
-import com.authapimicroservice.domain.user.User;
-import com.authapimicroservice.repositories.UserRepository;
+import com.usermicroservice.domain.user.User;
+import com.usermicroservice.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +24,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     UserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         var token = this.recoverToken(request);
         var login = tokenService.validateToken(token);
 

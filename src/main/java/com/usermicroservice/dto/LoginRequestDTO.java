@@ -1,3 +1,3 @@
-package com.authapimicroservice.dto;
+package com.usermicroservice.dto;
 
 public record LoginRequestDTO (String email, String password){ }

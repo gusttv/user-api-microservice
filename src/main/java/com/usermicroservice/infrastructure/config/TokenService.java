@@ -1,6 +1,6 @@
-package com.authapimicroservice.infrastructure.config;
+package com.usermicroservice.infrastructure.config;
 
-import com.authapimicroservice.domain.user.User;
+import com.usermicroservice.domain.user.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

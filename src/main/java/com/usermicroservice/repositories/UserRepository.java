@@ -1,6 +1,6 @@
-package com.authapimicroservice.repositories;
+package com.usermicroservice.repositories;
 
-import com.authapimicroservice.domain.user.User;
+import com.usermicroservice.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

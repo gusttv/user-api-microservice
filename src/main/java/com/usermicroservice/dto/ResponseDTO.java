@@ -1,3 +1,3 @@
-package com.authapimicroservice.dto;
+package com.usermicroservice.dto;
 
 public record ResponseDTO(String name, String token) { }

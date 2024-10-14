@@ -1,10 +1,10 @@
-package com.authapimicroservice;
+package com.usermicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class authapimicroserviceTests {
+class usermicroserviceTests {
 
     @Test
     void contextLoads() {

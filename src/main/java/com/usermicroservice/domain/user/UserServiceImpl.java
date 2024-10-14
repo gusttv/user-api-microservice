@@ -1,7 +1,8 @@
-package com.authapimicroservice.domain.user;
+package com.usermicroservice.domain.user;
 
-import com.authapimicroservice.repositories.UserRepository;
+import com.usermicroservice.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -22,12 +24,11 @@ public class UserServiceImpl implements UserService{
                 new RuntimeException("User not found"));
     }
 
-    // update user
     public Optional<User> updateUser(String id, User userDetails) {
         return userRepository.findById(id).map(user -> {
             user.setName(userDetails.getName());
             user.setEmail(userDetails.getEmail());
-            user.setPassword(userDetails.getPassword());
+            user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
             return userRepository.save(user);
         });
     }

@@ -1,4 +1,4 @@
-package com.authapimicroservice.infrastructure.config;
+package com.usermicroservice.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
