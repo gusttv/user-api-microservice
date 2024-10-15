@@ -3,6 +3,7 @@ package com.usermicroservice.domain.auth;
 import com.usermicroservice.domain.user.User;
 import com.usermicroservice.dto.LoginRequestDTO;
 import com.usermicroservice.dto.RegisterRequestDTO;
+import com.usermicroservice.dto.RegisterResponseDTO;
 import com.usermicroservice.dto.ResponseDTO;
 import com.usermicroservice.infrastructure.config.TokenService;
 import com.usermicroservice.repositories.UserRepository;
@@ -37,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
         throw new RuntimeException("Invalid credentials");
     }
 
-    public ResponseDTO register(RegisterRequestDTO registerRequest) {
+    public RegisterResponseDTO register(RegisterRequestDTO registerRequest) {
         // Verifica se o email já está em uso
         Optional<User> existingUser = userRepository.findByEmail(registerRequest.email());
         if (existingUser.isPresent()) {
@@ -54,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(newUser);
 
         // Gera um token JWT para o novo usuário
-        String token = tokenService.generateToken(newUser);
-        return new ResponseDTO(newUser.getName(), token);
+
+        return new RegisterResponseDTO(newUser.getId(), newUser.getName(), newUser.getEmail());
     }
 }
