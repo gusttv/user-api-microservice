@@ -1,4 +1,6 @@
-package com.usermicroservice.domain.user;
+package com.usermicroservice.domain.user.service;
+
+import com.usermicroservice.domain.user.model.User;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
 package com.usermicroservice.infrastructure.config;
 
-import com.usermicroservice.domain.user.User;
+import com.usermicroservice.domain.user.model.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -28,6 +28,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("user-microservice")
                     .withSubject(user.getEmail())
+                    .withClaim("userId", user.getId())
                     .withExpiresAt(this.generateExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException e) {

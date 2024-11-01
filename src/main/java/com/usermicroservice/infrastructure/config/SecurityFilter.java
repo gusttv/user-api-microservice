@@ -1,6 +1,6 @@
 package com.usermicroservice.infrastructure.config;
 
-import com.usermicroservice.domain.user.User;
+import com.usermicroservice.domain.user.model.User;
 import com.usermicroservice.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

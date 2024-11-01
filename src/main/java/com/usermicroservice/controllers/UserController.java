@@ -1,8 +1,8 @@
 package com.usermicroservice.controllers;
 
-import com.usermicroservice.domain.user.User;
-import com.usermicroservice.domain.user.UserService;
-import lombok.RequiredArgsConstructor;
+import com.usermicroservice.domain.user.model.User;
+import com.usermicroservice.domain.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
-@RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
